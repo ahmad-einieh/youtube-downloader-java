@@ -10,6 +10,7 @@ import com.github.kiulian.downloader.model.playlist.PlaylistInfo;
 import com.github.kiulian.downloader.model.videos.VideoInfo;
 import com.github.kiulian.downloader.model.videos.formats.VideoFormat;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -128,7 +129,7 @@ public class Ydownload {
 
     }
 
-    public void downloadPlaylist(String url, String path, Integer quality) {
+    public void downloadPlaylist(String url, String path, Integer quality, int waitTime) {
         File outputDir;
         try {
             outputDir = new File(path);
@@ -136,12 +137,25 @@ public class Ydownload {
             outputDir = new File("my_videos");
         }
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("start-maximized");
         options.addArguments("--headless");
         WebDriver driver = new ChromeDriver(options);
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
         /*FirefoxOptions options = new FirefoxOptions();
         options.addArguments("--headless");
         WebDriver driver = new FirefoxDriver(options);*/
         driver.get(url);
+        for (int second = 0; ; second++) {
+            if (second >= waitTime) {
+                break;
+            }
+            jse.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         var x = driver.findElements(By.cssSelector("a[class = 'yt-simple-endpoint inline-block style-scope ytd-thumbnail']"));
         String videoID;
         int numberOfVideo = 1;

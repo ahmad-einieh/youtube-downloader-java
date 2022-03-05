@@ -46,7 +46,7 @@ public class YdownloaderGUI extends javax.swing.JFrame {
             }
         });
 
-        VQuality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", " ", " " }));
+        VQuality.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{" ", " ", " "}));
         VQuality.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 VQualityMousePressed(evt);
@@ -63,36 +63,36 @@ public class YdownloaderGUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addComponent(URLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(l, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(VQuality, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(downloadB, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(30, Short.MAX_VALUE)
+                                .addComponent(URLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(148, 148, 148)
+                                                .addComponent(l, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(92, 92, 92)
+                                                .addComponent(VQuality, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(122, 122, 122)
+                                                .addComponent(downloadB, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(101, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(URLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(VQuality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(downloadB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(l, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(URLBar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(VQuality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addComponent(downloadB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(l, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))
         );
 
         pack();
@@ -107,7 +107,7 @@ public class YdownloaderGUI extends javax.swing.JFrame {
     private void downloadBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadBActionPerformed
         // TODO add your handling code here:
         int quality = 720;
-        if (VQuality.getSelectedItem() != null){
+        if (VQuality.getSelectedItem() != null) {
             quality = Integer.parseInt(VQuality.getSelectedItem().toString());
             //System.out.println("done");
         }
@@ -115,12 +115,11 @@ public class YdownloaderGUI extends javax.swing.JFrame {
         fc.showOpenDialog(this);
         String foldername = fc.getSelectedFile().toString();
         l.setText("download start");
-        if (URLBar.getText().contains("playlist")){
+        if (URLBar.getText().contains("playlist")) {
             l.setText(String.valueOf(Ydownload.j));
-            yy.downloadPlaylist(URLBar.getText(), foldername, quality);
+            yy.downloadPlaylist(URLBar.getText(), foldername, quality, 30);
             l.setText("download done");
-        }
-        else{
+        } else {
             yy.downloadVideo(URLBar.getText(), foldername, quality);
             l.setText("download done");
         }
@@ -128,10 +127,10 @@ public class YdownloaderGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_downloadBActionPerformed
 
     private void VQualityMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VQualityMousePressed
-        if (URLBar.getText().length() == 0){}
-        else{
-        yy.getInfo(this.VQuality,URLBar.getText());
-        //System.out.print("g");
+        if (URLBar.getText().length() == 0) {
+        } else {
+            yy.getInfo(this.VQuality, URLBar.getText());
+            //System.out.print("g");
         }
     }//GEN-LAST:event_VQualityMousePressed
 
